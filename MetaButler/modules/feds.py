@@ -89,7 +89,7 @@ def new_fed(update: Update, _: CallbackContext) -> None:
         fed = sql.new_fed(message.from_user.id, fedname, fed_id)
         if not fed:
             message.reply_text(
-                'Can\'t federate! Please report in @MetaButler if the problem persists.')
+                'Can\'t federate! Please report in @MetaProjectsSupport if the problem persists.')
             return
 
         message.reply_text(
@@ -1810,13 +1810,13 @@ def fed_help(update: Update, context: CallbackContext):
     elif help_info == "admin":
         help_text = gs(update.effective_chat.id, "FED_ADMIN_HELP")
     elif help_info == "user":
-        help_text = gs(update.effective_chat.id, "FED_USER_HELP") 
+        help_text = gs(update.effective_chat.id, "FED_USER_HELP")
     query.message.edit_text(
         text=help_text,
         parse_mode=ParseMode.MARKDOWN,
         reply_markup=InlineKeyboardMarkup(
-            [[InlineKeyboardButton(text="Back", callback_data=f"help_module({__mod_name__.lower()})"),
-            InlineKeyboardButton(text='Report Error', url='https://t.me/MetaButler')]]
+            [[InlineKeyboardButton(text="Back", callback_data=f"help_module({__mod_name__.replace(' ', '_').lower()})"),
+            InlineKeyboardButton(text='Report Error', url='https://t.me/MetaProjectsSupport')]]
         ),
     )
     bot.answer_callback_query(query.id)
